@@ -6,9 +6,12 @@ df = pd.DataFrame({
     "컬럼명2": [4, 5, 6],
     "컬럼명3": [7, 8, 9]},
 
-     index=[2019, 2020, 2021]
+     index=[2019, 2021, 2020]
 
 )
 df.index.name = '연도'
-print(df)
-print(tabulate(df, headers='keys', tablefmt='psql'))
+# print(df)
+print(tabulate(df, headers='keys', tablefmt="orgtbl"))
+
+df=df.sort_index(axis = 0)
+print(tabulate(df, headers='keys', tablefmt="orgtbl"))
