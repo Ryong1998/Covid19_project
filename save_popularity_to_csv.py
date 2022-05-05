@@ -20,57 +20,84 @@ driver_chrome = webdriver.Chrome(executable_path=chromedriver, options=chromeOpt
 driver_chrome.get("https://jumin.mois.go.kr/ageStatMonth.do")
 time.sleep(1)
 
+lst_2020 = ['03','04','05','06','07','08','09','10','11','12']
+lst_2021 = ['01','02','03','04','05','06','07','08','09','10','11','12']
+
 # 행정구역 시 선택
 district_city = driver_chrome.find_element_by_name("sltOrgLvl1") #행정구역 시 창 선택
-district_city_dropdown = Select(district_city)
-district_city_dropdown.select_by_index("1") #행정구역 시 상세선택
-time.sleep(1)
+# 행정구역 시들 리스트화
+city_list=list(district_city.text.split("\n"))
+city_list.remove(' ')
+print(city_list)
 
-# 행정구역 구 선택
-district_gu = driver_chrome.find_element_by_name("sltOrgLvl2") #행정구역 구 창 선택
-district_gu_dropdown = Select(district_gu)
-district_gu_dropdown.select_by_index("1") #행정구역 구 상세선택
-time.sleep(1)
-
-# 시작날짜 연도 선택
-startyear = driver_chrome.find_element_by_name("searchYearStart")
-startyear_dropdown = Select(startyear)
-startyear_dropdown.select_by_index("1")
-time.sleep(1)
-
-# 시작날짜 달 선택
-startmonth = driver_chrome.find_element_by_name("searchMonthStart") 
-startmonth_dropdown = Select(startmonth)
-startmonth_dropdown.select_by_index("11") 
-time.sleep(1)
-
-# 끝날짜 연도 선택
-endyear = driver_chrome.find_element_by_name("searchYearEnd")
-endyear_dropdown = Select(endyear)
-endyear_dropdown.select_by_index("1")
-time.sleep(1)
-
-# 끝날짜 달 선택
-endmonth = driver_chrome.find_element_by_name("searchMonthEnd") 
-endmonth_dropdown = Select(endmonth)
-endmonth_dropdown.select_by_index("11") 
-time.sleep(1)
-
-# 검색선택
-search_btn = driver_chrome.find_element_by_class_name("btn_search")
-search_btn.click()
-time.sleep(2)
-
-# csv 다운로드 까지 됨 - 경로 설정 필요
-download_btn = driver_chrome.find_element_by_id('csvDown')
-download_btn.click()
-time.sleep(3)
-download_btn.send_keys(Keys.RETURN)
-time.sleep(5)
+for city_index in range(len(city_list)):
+    district_city = driver_chrome.find_element_by_name("sltOrgLvl1") #행정구역 시 창 선택
+    district_city_dropdown = Select(district_city)
+    district_city_dropdown.select_by_index(str(city_index)) #행정구역 시 상세선택
+    time.sleep(1)
 
 
-# 다운로드한 파일명 수정 필요
-# 실행한 뒤 창이 안 닫힘
+    # 행정구역 구 선택
+    district_gu = driver_chrome.find_element_by_name("sltOrgLvl2") #행정구역 구 창 선택
+    gu_list=list(district_gu.text.split("\n"))
+    if ' ' in gu_list:
+        gu_list.remove(' ')
+    print(gu_list)
+    
+    for gu_index in range(len(gu_list)):
+        district_gu = driver_chrome.find_element_by_name("sltOrgLvl2") #행정구역 구 창 선택
+        district_gu_dropdown = Select(district_gu)
+        district_gu_dropdown.select_by_index(str(gu_index)) #행정구역 구 상세선택
+        time.sleep(1)
+        
+        for year in range(2020,2022):
+
+            # 시작날짜 연도 선택
+            startyear = driver_chrome.find_element_by_name("searchYearStart") 
+            startyear_dropdown = Select(startyear)
+            startyear_dropdown.select_by_value(str(year))
+            time.sleep(1)
+            
+            # 끝날짜 연도 선택
+            endyear = driver_chrome.find_element_by_name("searchYearEnd")
+            endyear_dropdown = Select(endyear)
+            endyear_dropdown.select_by_value(str(year))
+            time.sleep(1)
+
+            year_list=list()
+            if year == 2020:
+                year_list=lst_2020
+            elif year == 2021:
+                year_list=lst_2021
+                
+            for month_value in year_list:
+                # 시작날짜 달 선택
+                startmonth = driver_chrome.find_element_by_name("searchMonthStart") 
+                startmonth_dropdown = Select(startmonth)
+                startmonth_dropdown.select_by_value(str(month_value))
+                time.sleep(1)
+
+            
+                # 끝날짜 달 선택
+                endmonth = driver_chrome.find_element_by_name("searchMonthEnd") 
+                endmonth_dropdown = Select(endmonth)
+                endmonth_dropdown.select_by_value(str(month_value))
+                time.sleep(1)
+
+                # 검색선택
+                search_btn = driver_chrome.find_element_by_class_name("btn_search")
+                search_btn.click()
+                time.sleep(2)
+
+                # csv 다운로드 까지 됨 - 근데 다운로드 하고 중지가 됨
+                # download_btn = driver_chrome.find_element_by_id('csvDown')
+                # download_btn.click()
+                # time.sleep(2)
+                # download_btn.send_keys(Keys.RETURN) #엔터키입력을 통해 다운
+                # time.sleep(5)
+        
+
+
 
 
 # driver_chrome.quit() -
