@@ -31,6 +31,8 @@ city_list.remove(' ')
 print(city_list)
 
 for city_index in range(len(city_list)):
+    
+    
     district_city = driver_chrome.find_element_by_name("sltOrgLvl1") #행정구역 시 창 선택
     district_city_dropdown = Select(district_city)
     district_city_dropdown.select_by_index(str(city_index)) #행정구역 시 상세선택
@@ -90,11 +92,13 @@ for city_index in range(len(city_list)):
                 time.sleep(2)
 
                 # csv 다운로드 까지 됨 - 근데 다운로드 하고 중지가 됨
-                # download_btn = driver_chrome.find_element_by_id('csvDown')
-                # download_btn.click()
-                # time.sleep(2)
-                # download_btn.send_keys(Keys.RETURN) #엔터키입력을 통해 다운
-                # time.sleep(5)
+                download_btn = driver_chrome.find_element_by_id('csvDown')
+                download_btn.click()
+                time.sleep(2)
+                download_btn.send_keys(Keys.RETURN) #엔터키입력을 통해 다운
+                time.sleep(5)
+                driver_chrome.close()
+                # driver_chrome.set_page_load_timeout(20)
         
 
 
