@@ -11,48 +11,48 @@ import time
 # chromedriver 설치된 경로를 정확히 기재해야 함
 chromeOptions = webdriver.ChromeOptions() # 크롬 드라이버 옵션 설정
 prefs = {"download.default_directory" : "C:\self_project\covid_project\covid19_project\dataset"} # 파일다운로드 경로 설정
-chromeOptions.add_experimental_option("prefs",prefs) # 옴션 정의
+chromeOptions.add_experimental_option("prefs",prefs) # 옵션 정의
 
 chromedriver = 'C:/Users/LG/dev_python/Webdriver/chromedriver.exe' # 윈도우 
 driver_chrome = webdriver.Chrome(executable_path=chromedriver, options=chromeOptions) # 설정 반영
 
 # 크롤링할 사이트 호출
-driver_chrome.get("https://jumin.mois.go.kr/ageStatMonth.do")
+driver_chrome.get("https://jumin.mois.go.kr/ageStatMonth.do") # 셀리니움으로 크롤링할 메인 페이지 이동
 time.sleep(1)
 
-lst_2020 = ['03','04','05','06','07','08','09','10','11','12']
-lst_2021 = ['01','02','03','04','05','06','07','08','09','10','11','12']
+lst_2020 = ['03','04','05','06','07','08','09','10','11','12'] # 2020년의 해당 월들을 리스트로 생성
+lst_2021 = ['01','02','03','04','05','06','07','08','09','10','11','12'] # 2021년의 해당 월들을 리스트로 생성
 
-# 행정구역 시 선택
-district_city = driver_chrome.find_element_by_name("sltOrgLvl1") #행정구역 시 창 선택
-# 행정구역 시들 리스트화
-city_list=list(district_city.text.split("\n"))
-city_list.remove(' ')
-print(city_list)
+# 행정구역 시 들 리스트화
+district_city = driver_chrome.find_element_by_name("sltOrgLvl1") #행정구역 시 태크 선택
+city_list=list(district_city.text.split("\n")) # 엔터 기준으로 문자열 나눔
+city_list.remove(' ') # " "인 요소 제거
+print(city_list) # 행정구역 시 들 리스트 확인위해 출력
 
-for city_index in range(len(city_list)):
+for city_index in range(len(city_list)): # 인덱스로 행정구역 모든 시 들에 접근하기 위해서 반복문 사용 
     
     
-    district_city = driver_chrome.find_element_by_name("sltOrgLvl1") #행정구역 시 창 선택
-    district_city_dropdown = Select(district_city)
+    district_city = driver_chrome.find_element_by_name("sltOrgLvl1") #행정구역 시 태그 선택
+    district_city_dropdown = Select(district_city) # 드롭다운 선택을 위해서 Select 함수 이용
     district_city_dropdown.select_by_index(str(city_index)) #행정구역 시 상세선택
     time.sleep(1)
 
 
-    # 행정구역 구 선택
+    # 행정구역 구 들 리스트화
     district_gu = driver_chrome.find_element_by_name("sltOrgLvl2") #행정구역 구 창 선택
-    gu_list=list(district_gu.text.split("\n"))
-    if ' ' in gu_list:
-        gu_list.remove(' ')
-    print(gu_list)
+    gu_list=list(district_gu.text.split("\n")) # 엔터 기준으로 문자열 나눔
+    if ' ' in gu_list:  # " " 가 리스트에 있으면
+        gu_list.remove(' ') # " "인 요소 제거
+    print(gu_list) # 행정구역 구 들 리스트 확인위해 출력
+
     
-    for gu_index in range(len(gu_list)):
-        district_gu = driver_chrome.find_element_by_name("sltOrgLvl2") #행정구역 구 창 선택
-        district_gu_dropdown = Select(district_gu)
+    for gu_index in range(len(gu_list)): # 인덱스로 행정구역 모든 구 들에 접근하기 위해서 반복문 사용 
+        district_gu = driver_chrome.find_element_by_name("sltOrgLvl2") #행정구역 구 태그 선택
+        district_gu_dropdown = Select(district_gu) # 드롭다운 선택을 위해서 Select 함수 이용
         district_gu_dropdown.select_by_index(str(gu_index)) #행정구역 구 상세선택
         time.sleep(1)
         
-        for year in range(2020,2022):
+        for year in range(2020,2022): #2020년 2022년 년도 반복
 
             # 시작날짜 연도 선택
             startyear = driver_chrome.find_element_by_name("searchYearStart") 
@@ -67,12 +67,12 @@ for city_index in range(len(city_list)):
             time.sleep(1)
 
             year_list=list()
-            if year == 2020:
-                year_list=lst_2020
-            elif year == 2021:
-                year_list=lst_2021
+            if year == 2020: # 2020년이면
+                year_list=lst_2020 # 2020년의 월 리스트를 사용
+            elif year == 2021: # 2021년이면 
+                year_list=lst_2021 # 2021년의 월 리스트를 사용
                 
-            for month_value in year_list:
+            for month_value in year_list: # 선택한 년의 리스트 요소인 월을 사용
                 # 시작날짜 달 선택
                 startmonth = driver_chrome.find_element_by_name("searchMonthStart") 
                 startmonth_dropdown = Select(startmonth)
@@ -87,17 +87,16 @@ for city_index in range(len(city_list)):
                 time.sleep(1)
 
                 # 검색선택
-                search_btn = driver_chrome.find_element_by_class_name("btn_search")
-                search_btn.click()
+                search_btn = driver_chrome.find_element_by_class_name("btn_search") # 검색 태그 선택
+                search_btn.click() # 태그 클릭
                 time.sleep(2)
 
-                # csv 다운로드 까지 됨 - 근데 다운로드 하고 중지가 됨
-                download_btn = driver_chrome.find_element_by_id('csvDown')
-                download_btn.click()
+                # csv 다운로드 까지 됨 - 근데 다운로드 하고 중지가 됨, 크롬 다운로드 상태바 안나오게 하는 설정 필요!
+                download_btn = driver_chrome.find_element_by_id('csvDown') # 검색 태그 선택
+                download_btn.click() # 태그 클릭
                 time.sleep(2)
-                download_btn.send_keys(Keys.RETURN) #엔터키입력을 통해 다운
+                download_btn.send_keys(Keys.RETURN) #엔터키입력을 통해 다운로드 진행
                 time.sleep(5)
-                driver_chrome.close()
                 # driver_chrome.set_page_load_timeout(20)
         
 
