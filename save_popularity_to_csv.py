@@ -23,6 +23,15 @@ time.sleep(1)
 lst_2020 = ['03','04','05','06','07','08','09','10','11','12'] # 2020년의 해당 월들을 리스트로 생성
 lst_2021 = ['01','02','03','04','05','06','07','08','09','10','11','12'] # 2021년의 해당 월들을 리스트로 생성
 
+
+def click_download_button(tag):
+    download_btn = driver_chrome.find_element_by_id(tag) # 검색 태그 선택
+    download_btn.click() # 태그 클릭
+    time.sleep(2)
+    driver_chrome.switch_to.alert.accept() # 알람 확인을 통해 다운로드 진행
+    time.sleep(5)
+    
+
 # 행정구역 시 들 리스트화
 district_city = driver_chrome.find_element_by_name("sltOrgLvl1") #행정구역 시 태크 선택
 city_list=list(district_city.text.split("\n")) # 엔터 기준으로 문자열 나눔
@@ -91,13 +100,8 @@ for city_index in range(len(city_list)): # 인덱스로 행정구역 모든 시 
                 search_btn.click() # 태그 클릭
                 time.sleep(2)
 
-                # csv 다운로드 까지 됨 - 근데 다운로드 하고 중지가 됨, 크롬 다운로드 상태바 안나오게 하는 설정 필요!
-                download_btn = driver_chrome.find_element_by_id('csvDown') # 검색 태그 선택
-                download_btn.click() # 태그 클릭
-                time.sleep(2)
-                download_btn.send_keys(Keys.RETURN) #엔터키입력을 통해 다운로드 진행
-                time.sleep(5)
-                # driver_chrome.set_page_load_timeout(20)
+               
+                click_download_button('csvDown')
         
 
 

@@ -27,7 +27,7 @@ time.sleep(1)
 download_btn = driver_chrome.find_element_by_id('csvDown') # 검색 태그 선택
 download_btn.click() # 태그 클릭
 time.sleep(2)
-download_btn.send_keys(Keys.RETURN) #엔터키입력을 통해 다운로드 진행
+driver_chrome.switch_to.alert.accept() #엔터키입력을 통해 다운로드 진행
 time.sleep(5)
 
 district_city = driver_chrome.find_element_by_name("sltOrgLvl1") #행정구역 시 태그 선택
