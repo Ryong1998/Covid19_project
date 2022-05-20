@@ -9,7 +9,7 @@ file_lists = os.listdir(path_dir)
 for file_list in file_lists:
 
     # csv 파일 읽기, 경로는 상대경로, 절대경로 중 선택해서 기입
-    df = pd.read_csv("C://self_project//covid_project//covid19_project//dataset//region_popularity//"+file_list+".csv", encoding='cp949')
+    df = pd.read_csv("C://self_project//covid_project//covid19_project//dataset//region_popularity//"+file_list, encoding='cp949')
     df = df.set_index('행정구역') # 데이터프레임의 인덱스 설정
 
 
