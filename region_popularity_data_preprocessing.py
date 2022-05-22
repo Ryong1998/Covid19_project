@@ -1,3 +1,5 @@
+# 셀레니움으로 저장한 인구데이터들 파일명 수정 및 컬럼명 수정 코드
+
 # pandas 라이브러리 import
 
 import pandas as pd

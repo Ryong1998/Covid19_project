@@ -1,3 +1,5 @@
+# 오픈 api 이용해서 코로나 기본 데이터들 가져오는 코드
+
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd

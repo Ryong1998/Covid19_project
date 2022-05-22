@@ -1,3 +1,5 @@
+# 코로나 성별 및 연령 데이터들 가져오는 데이터
+
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd

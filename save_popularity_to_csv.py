@@ -1,4 +1,4 @@
-# 연도 및 달별 인구 구조 저장을 위한 코드
+# 연도 및 달별 인구 구조 저장을 위한 코드(셀레니움)
 import warnings
 warnings.filterwarnings('ignore')
 
