@@ -65,36 +65,28 @@ df=df.sort_index(axis = 0)
 # 데이터 프레임 중 카테고리 컬럼의 데이터값들의 종류 확인
 print(df['카테고리'].unique())
 
+df_dict = dict()
+
 # 카테고리 별로 데이터 프레임 복사해서 생성
-df_00 = df[df['카테고리']=='0-9'].copy()
-df_10 = df[df['카테고리']=='10-19'].copy()
-df_20 = df[df['카테고리']=='20-29'].copy()
-df_30 = df[df['카테고리']=='30-39'].copy()
-df_40 = df[df['카테고리']=='40-49'].copy()
-df_50 = df[df['카테고리']=='50-59'].copy()
-df_60 = df[df['카테고리']=='60-69'].copy()
-df_70 = df[df['카테고리']=='70-79'].copy()
-df_80 = df[df['카테고리']=='80 이상'].copy()
-df_male = df[df['카테고리']=='남성'].copy()
-df_female = df[df['카테고리']=='여성'].copy()
+df_dict['0'] = df[df['카테고리']=='0-9'].copy()
+df_dict['10'] = df[df['카테고리']=='10-19'].copy()
+df_dict['20']= df[df['카테고리']=='20-29'].copy()
+df_dict['30'] = df[df['카테고리']=='30-39'].copy()
+df_dict['40']= df[df['카테고리']=='40-49'].copy()
+df_dict['50'] = df[df['카테고리']=='50-59'].copy()
+df_dict['60'] = df[df['카테고리']=='60-69'].copy()
+df_dict['70'] = df[df['카테고리']=='70-79'].copy()
+df_dict['80'] = df[df['카테고리']=='80 이상'].copy()
+df_dict['male'] = df[df['카테고리']=='남성'].copy()
+df_dict['female'] = df[df['카테고리']=='여성'].copy()
+
+df.to_csv('covid19_project/dataset/covid_category/covid_category_full.csv', encoding='utf-8')
+for df_dict_key in df_dict.keys():
+    df_dict[df_dict_key][['누적확진자수','누적사망자수']].to_csv('covid19_project/dataset/covid_category/covid_category_'+df_dict_key+'.csv', encoding='utf-8')
 
 
 
 
-# 카테고리 컬럼을 제외한 값들을 csv 파일로 저장
-df_0[['누적확진자수','누적사망자수']].to_csv('covid19_project/dataset/covid_category_0.csv', encoding='utf-8')
-df_10[['누적확진자수','누적사망자수']].to_csv('covid19_project/dataset/covid_category_10.csv', encoding='utf-8')
-df_20[['누적확진자수','누적사망자수']].to_csv('covid19_project/dataset/covid_category_20.csv', encoding='utf-8')
-df_30[['누적확진자수','누적사망자수']].to_csv('covid19_project/dataset/covid_category_30.csv', encoding='utf-8')
-df_40[['누적확진자수','누적사망자수']].to_csv('covid19_project/dataset/covid_category_40.csv', encoding='utf-8')
-df_50[['누적확진자수','누적사망자수']].to_csv('covid19_project/dataset/covid_category_50.csv', encoding='utf-8')
-df_60[['누적확진자수','누적사망자수']].to_csv('covid19_project/dataset/covid_category_60.csv', encoding='utf-8')
-df_70[['누적확진자수','누적사망자수']].to_csv('covid19_project/dataset/covid_category_70.csv', encoding='utf-8')
-df_80[['누적확진자수','누적사망자수']].to_csv('covid19_project/dataset/covid_category_80.csv', encoding='utf-8')
-df_male[['누적확진자수','누적사망자수']].to_csv('covid19_project/dataset/covid_category_male.csv', encoding='utf-8')
-df_female[['누적확진자수','누적사망자수']].to_csv('covid19_project/dataset/covid_category_female.csv', encoding='utf-8')
 
-# 데이터 프레임으로 의도한 대로 처리가 됬는 확인하기 위해서 출력
-print(tabulate(df_0[['누적확진자수','누적사망자수']].head(), headers='keys', tablefmt='psql'))
 
 
