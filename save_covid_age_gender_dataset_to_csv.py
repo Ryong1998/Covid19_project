@@ -65,9 +65,9 @@ df=df.sort_index(axis = 0)
 # 데이터 프레임 중 카테고리 컬럼의 데이터값들의 종류 확인
 print(df['카테고리'].unique())
 
-df_dict = dict()
+df_dict = dict() # 후에 반복문으로 데이터프레임들을 처리하기 위해서 딕셔너리 선언
 
-# 카테고리 별로 데이터 프레임 복사해서 생성
+# 카테고리 별로 데이터 프레임 복사해서, 딕셔너리에 데이터프레임들을 추가
 df_dict['0'] = df[df['카테고리']=='0-9'].copy()
 df_dict['10'] = df[df['카테고리']=='10-19'].copy()
 df_dict['20']= df[df['카테고리']=='20-29'].copy()
@@ -80,7 +80,11 @@ df_dict['80'] = df[df['카테고리']=='80 이상'].copy()
 df_dict['male'] = df[df['카테고리']=='남성'].copy()
 df_dict['female'] = df[df['카테고리']=='여성'].copy()
 
+
+# 가공하지 않은 데이터 프레임을 저장(후에 제대로 데이터 프레임 처리가 됬는지 확인하기 위해서)
 df.to_csv('covid19_project/dataset/covid_category/covid_category_full.csv', encoding='utf-8')
+
+# 딕셔너리의 킷값들을 통해서 생성한 모든 데이터프레임들을 csv파일로 저장
 for df_dict_key in df_dict.keys():
     df_dict[df_dict_key][['누적확진자수','누적사망자수']].to_csv('covid19_project/dataset/covid_category/covid_category_'+df_dict_key+'.csv', encoding='utf-8')
 
