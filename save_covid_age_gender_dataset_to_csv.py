@@ -66,17 +66,20 @@ df=df.sort_index(axis = 0)
 print(df['카테고리'].unique())
 
 # 카테고리 별로 데이터 프레임 복사해서 생성
-df_0 = df[df['카테고리']=='0-9'].copy()
+df_00 = df[df['카테고리']=='0-9'].copy()
+df_10 = df[df['카테고리']=='10-19'].copy()
+df_20 = df[df['카테고리']=='20-29'].copy()
+df_30 = df[df['카테고리']=='30-39'].copy()
+df_40 = df[df['카테고리']=='40-49'].copy()
+df_50 = df[df['카테고리']=='50-59'].copy()
+df_60 = df[df['카테고리']=='60-69'].copy()
+df_70 = df[df['카테고리']=='70-79'].copy()
+df_80 = df[df['카테고리']=='80 이상'].copy()
 df_male = df[df['카테고리']=='남성'].copy()
 df_female = df[df['카테고리']=='여성'].copy()
-df_80 = df[df['카테고리']=='80 이상'].copy()
-df_70 = df[df['카테고리']=='70-79'].copy()
-df_10 = df[df['카테고리']=='10-19'].copy()
-df_50 = df[df['카테고리']=='50-59'].copy()
-df_40 = df[df['카테고리']=='40-49'].copy()
-df_30 = df[df['카테고리']=='30-39'].copy()
-df_20 = df[df['카테고리']=='20-29'].copy()
-df_60 = df[df['카테고리']=='60-69'].copy()
+
+
+
 
 # 카테고리 컬럼을 제외한 값들을 csv 파일로 저장
 df_0[['누적확진자수','누적사망자수']].to_csv('covid19_project/dataset/covid_category_0.csv', encoding='utf-8')

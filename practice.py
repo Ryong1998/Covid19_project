@@ -1,8 +1,21 @@
-columns_list= ["경기도 군포시 (4141000000)", "경기도 군포시 군포1동(4141051000)","서울특별시  (1100000000)"]
-for i,column_value in enumerate(columns_list):
-    columns_list[i] = column_value.split('(')[0]
-    if columns_list[i][-1]==' ':
-        columns_list[i]=columns_list[i].split()
-        columns_list[i] = " ".join(columns_list[i])
+# 셀레니움으로 저장한 인구데이터들 파일명 수정 및 컬럼명 수정 코드
+from tabulate import tabulate # 데이터프레임을 예쁘게 출력하기 위해서 사용
+# pandas 라이브러리 import
 
-print(columns_list)
+import pandas as pd
+from tabulate import tabulate # 데이터프레임을 예쁘게 출력하기 위해서 사용
+import os
+
+get_path_dir = 'C://self_project//covid_project//covid19_project//dataset//region_popularity_ver1'
+file_lists = os.listdir(get_path_dir)
+# for문을 통해서 여러 데이터 프레임들 생성
+df = pd.read_csv(get_path_dir+"//"+"강원도_2020년03월.csv", encoding='utf-8')
+print(df.index)
+print(df)
+print()
+df.reset_index()
+print(df)
+     
+
+
+

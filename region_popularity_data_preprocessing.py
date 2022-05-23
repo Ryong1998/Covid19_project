@@ -16,6 +16,7 @@ for file_list in file_lists:
 
 
     df = df.transpose() # 데이터 프레임의 컬럼들과 인덱스 설정(기존에는 인덱스가 지역, 컬럼이 연령별 카테고리 였는데 인덱스를 연령별 카테고리로, 컬럼을 지역으로 설정)
+    df.index.name = "카테고리"
     season=df.index[0].split("_")[0] # 0000년00월 을 변수에 담음
     region_dosi = df.columns[0].split()[0] #행정구역 중 도 or 시를 변수에 담는다 
 
