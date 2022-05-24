@@ -20,6 +20,12 @@ driver_chrome = webdriver.Chrome(executable_path=chromedriver, options=chromeOpt
 driver_chrome.get("https://data.kbland.kr/kbstats/investment-table") # 셀리니움으로 크롤링할 메인 페이지 이동
 time.sleep(3)
 
+market_price_per_supply = driver_chrome.find_element_by_css_selector("#container > div > div > div.scrollbar-inner.scroll-content.scroll-scrolly_visible > div > div.mainTitle > h2")
+
+
+print("--------------------------------")
+print(market_price_per_supply.text)
+print("--------------------------------")
 
 # driver_chrome.quit() -
 driver_chrome.quit()
