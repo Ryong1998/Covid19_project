@@ -10,7 +10,7 @@ import time
 # 드라이버 생성
 # chromedriver 설치된 경로를 정확히 기재해야 함
 chromeOptions = webdriver.ChromeOptions() # 크롬 드라이버 옵션 설정
-prefs = {"download.default_directory" : "C:\self_project\covid_project\covid19_project\dataset"} # 파일다운로드 경로 설정
+prefs = {"download.default_directory" : "C:\self_project\covid_project\covid19_project\dataset\ region_popularity_temp"} # 파일다운로드 경로 설정
 chromeOptions.add_experimental_option("prefs",prefs) # 옵션 정의
 
 chromedriver = 'C:/Users/LG/dev_python/Webdriver/chromedriver.exe' # 윈도우 
@@ -20,7 +20,7 @@ driver_chrome = webdriver.Chrome(executable_path=chromedriver, options=chromeOpt
 driver_chrome.get("https://jumin.mois.go.kr/ageStatMonth.do") # 셀리니움으로 크롤링할 메인 페이지 이동
 time.sleep(1)
 
-lst_2020 = ['03','04','05','06','07','08','09','10','11','12'] # 2020년의 해당 월들을 리스트로 생성
+lst_2020 = ['03','04','05','06','07','08','09','10','11','12'] # 2020년의 해당 월들을 리스트로 생성, 이후에 1월 2월 데이터도 가져왔음!
 lst_2021 = ['01','02','03','04','05','06','07','08','09','10','11','12'] # 2021년의 해당 월들을 리스트로 생성
 
 
