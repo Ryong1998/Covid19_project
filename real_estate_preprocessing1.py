@@ -1,4 +1,4 @@
-# 부동산원 데이터를 형식에 맞춰서 전처리 하는 코드
+# 부동산원 전국주택가격 데이터를 형식에 맞춰서 전처리 하는 코드
 
 from asyncio.windows_events import NULL
 import pandas as pd
