@@ -102,5 +102,14 @@ for col in cols:
 for col_dict_key in col_dict.keys():
     # print(col_dict_key)
     df2=df[col_dict[col_dict_key]].copy()
+    col_list=list()
+    cols=df2.columns.tolist()
+    for col in cols:
+        if ' ' in col:
+            col_list.append(col.split(' ')[-1])
+        else:
+            col_list.append(col)
+
+    df2.columns=col_list
     print(df2.head())
-    df2.to_csv('data_project_file/dataset/real_estate/KB_proprocessing1/'+col_dict_key+'.csv', encoding='utf-8')
+    df2.to_csv('data_project_file/dataset/real_estate/부동산원_proprocessing1/'+col_dict_key+'.csv', encoding='utf-8')
