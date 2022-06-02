@@ -1,3 +1,5 @@
+#kb 월간 아파트 매매가격지수를 전처리 하는 코드
+
 import pandas as pd
 from asyncio.windows_events import NULL
 
