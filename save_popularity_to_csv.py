@@ -10,7 +10,7 @@ import time
 # 드라이버 생성
 # chromedriver 설치된 경로를 정확히 기재해야 함
 chromeOptions = webdriver.ChromeOptions() # 크롬 드라이버 옵션 설정
-prefs = {"download.default_directory" : "C:\self_project\covid_project\covid19_project\dataset\ region_popularity_temp"} # 파일다운로드 경로 설정
+prefs = {"download.default_directory" : "C:\self_project\data_project\data_project_file\dataset\ region_popularity_temp"} # 파일다운로드 경로 설정
 chromeOptions.add_experimental_option("prefs",prefs) # 옵션 정의
 
 chromedriver = 'C:/Users/LG/dev_python/Webdriver/chromedriver.exe' # 윈도우 

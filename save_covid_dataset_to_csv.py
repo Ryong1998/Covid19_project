@@ -79,7 +79,7 @@ df=df.set_index("기준날짜")
 df=df.sort_index(axis = 0)
 
 # 데이터프레임을 csv파일로 저장
-df.to_csv('covid19_project/dataset/covid_base/covid_base_data_1.csv', encoding='utf-8')
+df.to_csv('data_project_file/dataset/covid_base/covid_base_data_1.csv', encoding='utf-8')
 
 # tabulate을 통해 데이터프레임을 좀 더 예쁘게 출력
 print(tabulate(df, headers='keys', tablefmt='psql'))

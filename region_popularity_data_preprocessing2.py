@@ -7,7 +7,7 @@ import pandas as pd
 from tabulate import tabulate # 데이터프레임을 예쁘게 출력하기 위해서 사용
 import os
 
-get_path_dir = 'C://self_project//covid_project//covid19_project//dataset//region_popularity_ver1'
+get_path_dir = 'C://self_project//data_project//data_project_file//dataset//region_popularity_ver1'
 file_lists = os.listdir(get_path_dir)
 df_dictionary = dict()
 # print(len(file_lists)) # 파일이 5308개
@@ -29,7 +29,7 @@ for i in range(1,len(file_name_list)):
         df_dictionary[i]=pd.concat([df_dictionary[i-1], df_dictionary[i]], ignore_index=True)
     elif file_name_list[i-1] != file_name_list[i]:
         df_dictionary[i-1].set_index('카테고리')
-        df_dictionary[i-1].to_csv('C://self_project//covid_project//covid19_project//dataset//region_popularity_ver2//'+file_name_list[i-1]+'.csv', index=False) # 파일 저장
+        df_dictionary[i-1].to_csv('C://self_project//data_project//data_project_file//dataset//region_popularity_ver2//'+file_name_list[i-1]+'.csv', index=False) # 파일 저장
     
      
 

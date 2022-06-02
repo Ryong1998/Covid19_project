@@ -5,7 +5,7 @@ import pandas as pd
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
-df = pd.read_csv('covid19_project/dataset/covid_base/covid_base_data_1.csv',encoding="utf-8")
+df = pd.read_csv('data_project_file///dataset/covid_base/covid_base_data_1.csv',encoding="utf-8")
 
 # 그래프로 출력할 두개의 column 명을 변수로 받음
 first_measurement='일일확진자수'

@@ -86,7 +86,7 @@ df.to_csv('covid19_project/dataset/covid_category/covid_category_full.csv', enco
 
 # 딕셔너리의 킷값들을 통해서 생성한 모든 데이터프레임들을 csv파일로 저장
 for df_dict_key in df_dict.keys():
-    df_dict[df_dict_key][['누적확진자수','누적사망자수']].to_csv('covid19_project/dataset/covid_category/covid_category_'+df_dict_key+'.csv', encoding='utf-8')
+    df_dict[df_dict_key][['누적확진자수','누적사망자수']].to_csv('data_project_file/dataset/covid_category/covid_category_'+df_dict_key+'.csv', encoding='utf-8')
 
 
 

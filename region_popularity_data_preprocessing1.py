@@ -6,12 +6,12 @@ import pandas as pd
 from tabulate import tabulate # 데이터프레임을 예쁘게 출력하기 위해서 사용
 import os
 
-path_dir = 'C://self_project//covid_project//covid19_project//dataset//region_popularity'
+path_dir = 'C://self_project//data_project//data_project_file//dataset//region_popularity'
 file_lists = os.listdir(path_dir)
 for file_list in file_lists:
 
     # csv 파일 읽기, 경로는 상대경로, 절대경로 중 선택해서 기입
-    df = pd.read_csv("C://self_project//covid_project//covid19_project//dataset//region_popularity//"+file_list, encoding='cp949')
+    df = pd.read_csv("C://self_project//data_project//data_project_file//dataset//region_popularity//"+file_list, encoding='cp949')
     df = df.set_index('행정구역') # 데이터프레임의 인덱스 설정
 
 
@@ -53,4 +53,4 @@ for file_list in file_lists:
     filename = region_dosi+region_sigungu+season
     print(filename) # 만들고자 하는 파일명 임시적 확인
 
-    df.to_csv('C://self_project//covid_project//covid19_project//dataset//region_popularity_ver1//'+filename+'.csv') # 파일 저장
+    df.to_csv('C://self_project//data_project//data_project_file//dataset//region_popularity_ver1//'+filename+'.csv') # 파일 저장

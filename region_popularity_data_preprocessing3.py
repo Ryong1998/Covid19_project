@@ -18,7 +18,7 @@ def func(df_data):
 
 df_dict = dict() 
 
-path_dir = "C://self_project//covid_project//covid19_project//dataset//region_popularity_ver2"
+path_dir = "C://self_project//data_project//data_project_file//dataset//region_popularity_ver2"
 file_lists = os.listdir(path_dir) # file_lists의 요소들은 .csv까지 문자열로 포함되어 있다
 
 for file_list in file_lists: 
@@ -66,7 +66,7 @@ for file_list in file_lists:
 
     for df_dict_key in df_dict.keys():
         del df_dict[df_dict_key]['성별'] # 데이터프레임들에 있는 성별 컬럼은 이제 필요 없음
-        df_dict[df_dict_key].to_csv('covid19_project/dataset/region_popularity_ver3/'+file_name+'_'+df_dict_key+'.csv', encoding='utf-8')
+        df_dict[df_dict_key].to_csv('data_project_file/dataset/region_popularity_ver3/'+file_name+'_'+df_dict_key+'.csv', encoding='utf-8')
     
     # 진행상황을 알기위해서 진행중인 원본 파일 출력
     print(file_list+" 완료")
