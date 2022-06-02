@@ -28,6 +28,8 @@ for file_list in file_lists:
     # 임시 테스트를 위해서 파이 하나 만을 읽음
     df = pd.read_csv(path_dir+'//'+file_list,  encoding='utf-8') # 추후 수정 필요
 
+
+    
     # 년도와 월을 컬럼으로 추가
     df['년월'] = df['카테고리'].str.split('_',expand=True)[0]
     df['년도'] = df['년월'].str.split('년',expand=True)[0]
@@ -58,6 +60,19 @@ for file_list in file_lists:
     # 카테고리 년월 컬럼명 삭제
     del df['카테고리']
     del df['년월']
+    
+    col_list=list()
+    cols=df.columns.tolist()
+    
+    for col in cols:
+        if ' ' in col:
+            col_list.append(col.split(' ')[-1])
+        else:
+            col_list.append(col)
+
+    
+    df.columns=col_list
+    
 
     # 카테고리별로 데이터프레임을 생성
     df_dict['whole'] = df[df['성별']=='계'].copy()
